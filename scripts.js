@@ -6,7 +6,31 @@ const Calculation = {
     inputClicked: function(event) {
         const button = event.target;
         console.log("you clicked " + button.textContent);
-        this.currInput = this.currInput.concat(button.textContent);
+        let input = button.textContent;
+        switch (input) {
+            case "DEL":
+                this.currInput = "";
+                this.currResult = 0;
+                break;
+            case "MOD":
+                this.currInput = this.currInput.concat("%");
+                break;
+            case "÷":
+                this.currInput = this.currInput.concat("/");
+                break;
+            case "^":
+                this.currInput = this.currInput.concat("**");
+                break;
+            case "√":
+                this.currInput = this.currInput.concat("**0.5");
+                break;
+            case "+/-":
+                this.currInput = this.currInput.concat("-");
+                break;
+            default:
+                this.currInput = this.currInput.concat(button.textContent);
+
+        }
         document.querySelector(".outputSpace").textContent = this.currInput;
     },
 
@@ -17,7 +41,7 @@ const Calculation = {
         this.currResult = eval(this.currInput);
         document.querySelector(".outputSpace").textContent = this.currResult;
         this.currInput = "";
-    }
+    },
 
 };
 
